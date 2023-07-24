@@ -21,13 +21,13 @@ impl Assignment {
 
     fn overlaps(&self, range: &Assignment) -> bool {
         match range {
-            Assignment { lower, upper }
-                if self.lower <= *lower && self.upper >= *lower && self.upper <= *upper =>
+            &Assignment { lower, upper }
+                if self.lower <= lower && self.upper >= lower && self.upper <= upper =>
             {
                 true
             }
-            Assignment { lower, upper }
-                if self.lower >= *lower && self.lower <= *upper && self.upper >= *upper =>
+            &Assignment { lower, upper }
+                if self.lower >= lower && self.lower <= upper && self.upper >= upper =>
             {
                 true
             }
