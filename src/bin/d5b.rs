@@ -52,9 +52,14 @@ fn execute_instruction(instruction: &Instruction, stacks: &mut Vec<Stack>) {
         destination,
         quantity,
     } = instruction;
+    let mut group = Vec::new();
     for _ in 0..quantity {
         let origin = stacks.get_mut(origin - 1).unwrap();
         let cargo = origin.cargos.pop().unwrap();
+        group.push(cargo);
+    }
+    for _ in 0..group.len() {
+        let cargo = group.pop().unwrap();
         let destination = stacks.get_mut(destination - 1).unwrap();
         destination.cargos.push(cargo);
     }
